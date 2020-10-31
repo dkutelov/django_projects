@@ -1,0 +1,54 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center py-5">
+    <div class="col-md-5">
+        <h2 class="mt-6 mb-4">Create new topic</h2>
+                {% if form.errors %}
+        <div class="alert alert-danger" role="alert">{{ form.errors }}</div>
+        {% endif %}
+          <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="btn btn-secondary mt-2">Create</button>
+        </form>
+    </div>
+</div>
+<div class="row justify-content-center py-5">
+    <div class="col-md-5">
+        <h2 class="mt-6 mb-4">Topic List</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Topic</th>
+              <th scope="col" class="text-center">Edit</th>
+              <th scope="col" class="text-center">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for topic in topics %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>{{ topic }}</td>
+              <td class="text-center">
+                  <a href="{% url 'edit_topic' topic.id %}">
+                    <i class="fa fa-edit text-success"></i>
+                  </a>
+              </td>
+              <td class="text-center">
+                  <a href="{% url 'delete_topic' topic.id %}">
+                    <i class="fa fa-trash-o text-danger"></i>
+                  </a>
+              </td>
+            </tr>
+          {% empty %}
+                <tr class="text-center">
+                    <td colspan="4">No topics yet.</td>
+                </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
