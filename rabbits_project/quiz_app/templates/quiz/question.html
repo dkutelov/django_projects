@@ -1,0 +1,50 @@
+{% extends 'shared/base.html' %}
+{% block site_title %} Quiz 1 {% endblock %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/styles-question.css' %}">
+{% endblock %}
+
+{% block site_content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-center headline">{{ quiz.name }}</h1>
+
+                <p class="text-center">Question {{ question.position }} / {{ quiz.question_set.count }}</p>
+
+                <div class="progress">
+                    <div class="progress-bar progress-bar-styled" role="progressbar" style="width:{{ progress }}%"
+                         aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+
+                <div class="card">
+                  <div class="card-body card-body-styled">
+                    {{ question.text }}
+                  </div>
+                </div>
+
+                <div class="my-4">
+                    <form action="{% url 'quiz:question' quiz.id question.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="answers-wrap">
+                            <span>disagree</span>
+                            {% for radio in form.score %}
+                                <label for="{{ radio.id_for_label }}" class="radio-styled">
+                                    <span class="radio">{{ radio.tag }}</span>
+                                </label>
+                            {% endfor %}
+                            <span>agree</span>
+                        </div>
+                        <div class="answer-buttons">
+                            <button type="submit" class="d:block btn btn-styled">Previous</button>
+                            <button type="submit" class="d:block btn btn-styled">Next</button>
+                        </div>
+                    </form>
+                </div>
+
+
+                    </div>
+        </div>
+    </div>
+{% endblock %}

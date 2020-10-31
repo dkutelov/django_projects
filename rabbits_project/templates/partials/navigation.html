@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-md navbar-styled">
+    <div class="container">
+        <a class="navbar-brand navbar-bran-styled" href="{% url 'index' %}">
+            <span>Rabbits</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav mr-auto nav-pills">
+                <li class="nav-item ml-2">
+                    <a class="nav-link link-styled" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item ml-2">
+                    <a class="nav-link link-styled" href="{% url 'quiz:index' 1%}">Quiz 1</a>
+                </li>
+            </ul>
+            {% endif %}
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="#" onclick="$('#signOutBtn').click()" class="nav-link active btn-styled btn-sm">Logout</a>
+                    <form style='display: none;' method="POST" action="{% url 'user:logout' %}">
+                        {% csrf_token %}
+                        <button id="signOutBtn" type="submit">Logout</button>
+                    </form>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link btn-styled btn-sm" href="{% url 'user:signup' %}">Sign Up</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link btn-styled btn-sm" href="{% url 'user:login' %}">Login</a>
+                </li>
+            {% endif %}
+            </ul>
+            </div>
+    </div>
+    </nav>

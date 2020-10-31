@@ -1,0 +1,19 @@
+{% extends 'shared/base.html' %}
+{% block site_title %} Quiz 1 {% endblock %}
+
+{% block site_content %}
+    <div class="container">
+        <h1 class="text-center headline">{{ quiz.name }}</h1>
+
+        <p>This quiz contains {{ quiz.question_set.count }} questions. It will take you about 15 minutes to complete. Write an honest and spontaneous answer.</p>
+        <p>You can go back review all your answers and modify them.</p>
+
+        {% if start_question %}
+        <div>
+            <a class="btn btn-styled" href="{% url 'quiz:question' quiz.id start_question.id %}">Start</a>
+        </div>
+        {% else %}
+            <p>This quiz has no questions yet.</p>
+        {% endif %}
+    </div>
+{% endblock %}

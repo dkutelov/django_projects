@@ -1,0 +1,41 @@
+.progress {
+    height: 3px;
+    margin-bottom: 2.5em;
+    background-color: var(--secondary);
+}
+
+.progress-bar-styled {
+    background-color: var(--text_lighter);
+}
+
+.card-body-styled {
+    padding: 3em 1.5em;
+}
+
+.answers-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 40px;
+    align-items: center;
+}
+
+.radio-styled {
+    width: 2em;
+    height: 2em;
+    margin: 0 0.5em;
+}
+
+.answers-wrap span:first-child {
+    margin-right: 2em;
+}
+
+.radio-styled input{
+    width: 2em;
+    height: 2em;
+    border-color: var(--bg_main_lighter);
+}
+
+.answer-buttons {
+    display: flex;
+    justify-content: space-between;
+}
