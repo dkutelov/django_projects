@@ -11,14 +11,15 @@
             <div class="col-md-6">
                 <h1 class="text-center headline">{{ quiz.name }}</h1>
 
-                <p class="text-center">Question {{ question.position }} / {{ quiz.question_set.count }}</p>
+                <div class="progress-section">
+                    <p class="text-center">Question {{ question.position }} / {{ quiz.question_set.count }}</p>
 
-                <div class="progress">
-                    <div class="progress-bar progress-bar-styled" role="progressbar" style="width:{{ progress }}%"
-                         aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-styled" role="progressbar" style="width:{{ progress }}%"
+                             aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                 </div>
-
-                <div class="card">
+                <div class="card card-styled">
                   <div class="card-body card-body-styled">
                     {{ question.text }}
                   </div>
@@ -30,21 +31,20 @@
                         <div class="answers-wrap">
                             <span>disagree</span>
                             {% for radio in form.score %}
-                                <label for="{{ radio.id_for_label }}" class="radio-styled">
-                                    <span class="radio">{{ radio.tag }}</span>
-                                </label>
+                                {{ radio.tag }}
+                                <label for="{{ radio.id_for_label }}" class="radio-styled"></label>
                             {% endfor %}
                             <span>agree</span>
                         </div>
                         <div class="answer-buttons">
-                            <button type="submit" class="d:block btn btn-styled">Previous</button>
+                            {% if start_question %}
+                                <a href="{% url 'quiz:question' quiz.id start_question.id %}" class="d:block btn btn-styled">Start Again</a>
+                            {% endif %}
                             <button type="submit" class="d:block btn btn-styled">Next</button>
                         </div>
                     </form>
                 </div>
-
-
-                    </div>
+            </div>
         </div>
     </div>
 {% endblock %}

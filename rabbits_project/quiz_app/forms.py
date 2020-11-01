@@ -16,9 +16,9 @@ class QuestionAnswerForm(forms.ModelForm):
         ],
         # required=True,
         widget=forms.RadioSelect(
-            attrs={
-                'class': 'form-check-input position-static'
-            }
+            # attrs={
+            #     'class': 'form-check-input position-static'
+            # }
         )
     )
 

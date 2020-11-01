@@ -14,4 +14,5 @@ def quiz_index(request, quiz_id):
         'quiz': quiz,
         'start_question': start_question
     }
+
     return render(request, 'quiz/index.html', context)

@@ -1,3 +1,6 @@
+.progress-section {
+    margin-top: -50px;
+}
 .progress {
     height: 3px;
     margin-bottom: 2.5em;
@@ -8,8 +11,14 @@
     background-color: var(--text_lighter);
 }
 
+.card-styled {
+    border: none;
+    height: 11em;
+}
+
 .card-body-styled {
-    padding: 3em 1.5em;
+    font-size: 1.5em;
+    padding: 1em;
 }
 
 .answers-wrap {
@@ -19,21 +28,75 @@
     align-items: center;
 }
 
-.radio-styled {
-    width: 2em;
-    height: 2em;
-    margin: 0 0.5em;
+/*.radio-styled {*/
+/*    width: 2em;*/
+/*    height: 2em;*/
+/*    margin: 0 0.5em;*/
+/*}*/
+
+label.radio-styled {
+	display: inline-block;
+	padding: 5px 5px;
+	cursor: pointer;
+	text-align: center;
+	margin: 11px 0 0 0;
 }
 
+
+input[type="radio"] {
+	display: none;
+}
+
+.radio-styled::before {
+	content: "";
+	display: block;
+	width: 40px;
+	height: 40px;
+	border: 2px solid var(--text_primary);
+	border-radius: 50%;
+	background-color: var(--secondary);
+}
+
+.radio-styled:nth-of-type(1)::before,
+.radio-styled:nth-of-type(7)::before {
+    width: 45px;
+	height: 45px;
+}
+
+.radio-styled:nth-of-type(3)::before,
+.radio-styled:nth-of-type(5)::before {
+    width: 35px;
+	height: 35px;
+}
+
+.radio-styled:nth-of-type(4)::before {
+    width: 30px;
+	height: 30px;
+}
+
+input[type=radio]:checked + .radio-styled::before {
+	content: "";
+	background-color: var(--text_primary);
+	transition: background 100ms ease 0.1s;
+	border: 3px solid var(--text_primary);
+}
+
+.answers-wrap span {
+    width: 3.5em;
+}
 .answers-wrap span:first-child {
-    margin-right: 2em;
+    margin-right: 1em;
 }
 
-.radio-styled input{
-    width: 2em;
-    height: 2em;
-    border-color: var(--bg_main_lighter);
+.answers-wrap span:last-child {
+    margin-left: 1em;
 }
+
+/*.radio-styled input{*/
+/*    width: 2em;*/
+/*    height: 2em;*/
+/*    border-color: var(--bg_main_lighter);*/
+/*}*/
 
 .answer-buttons {
     display: flex;

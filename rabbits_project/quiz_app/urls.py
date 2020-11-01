@@ -7,5 +7,5 @@ app_name = 'quiz'
 
 urlpatterns = [
     path('<int:quiz_id>', quiz_index, name='index'),
-    path('<int:quiz_id>/question/<int:question_id>', question, name='question')
+    path('<int:quiz_id>/question/<int:question_id>', question, name='question'),
 ]
