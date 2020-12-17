@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block page_title %} {% endblock %}</title>
+    {% load static %}
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans:400,500,700">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block page_styles %} {% endblock %}
+</head>
+<body>
+    {% include 'ibebe/partials/header.html' %}
+    {% block content %} No content {% endblock %}
+    {% include 'ibebe/partials/footer.html' %}
+     <!-- MaterializeCSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    {% block page_scripts %} {% endblock %}
+</body>
+</html>
