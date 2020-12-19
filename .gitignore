@@ -11,3 +11,4 @@ bin
 common
 lib
 pyvenv.cfg
+node_modules

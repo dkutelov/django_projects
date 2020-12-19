@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import DetailView, UpdateView
 
 from quiz_app.forms import QuestionAnswerForm
-from quiz_app.models import Quiz, Answer
+from quiz_app.models import Quiz, Answer, Question
 
 
 def get_progress(request, quiz):
@@ -65,3 +66,25 @@ def question(request, quiz_id, question_id):
                 answer.user = request.user
                 answer.save()
                 return redirect('quiz:question', quiz_id, next_question)
+
+
+class QuestionDetail(DetailView):
+    model = Question
+    template_name = 'quiz/question-detail.html'
+    answer = None
+
+    def dispatch(self, request, *args, **kwargs):
+        current_question = self.get_object()
+        try:
+            self.answer = Answer.objects.filter(user=request.user, question=current_question)[0]
+        except:
+            pass
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['answer'] = self.answer
+        context['form'] = QuestionAnswerForm
+        if self.answer:
+            context['form'] = QuestionAnswerForm(instance=self.answer)
+        return context

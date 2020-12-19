@@ -6,8 +6,25 @@
 
 
 {% block content %}
-    <h1>Hi</h1>
+    <section class="container">
+        <h1 class="section-heading">Избрани продукти</h1>
     {% for product in products %}
-        <p>{{ product.name }}</p>
+        <div class="product product--{% cycle 'left' 'right' %}">
+            <div class="product__image">
+                <img srcset="https://res.cloudinary.com/dariku/image/upload/c_fill,h_1200,q_auto,f_auto,w_1200/v1548513244/ibebe/{{product.image_name}} 1200w,
+                https://res.cloudinary.com/dariku/image/upload/c_fill,h_900,q_auto,f_auto,w_900/v1548513244/ibebe/{{product.image_name}} 900w,
+                https://res.cloudinary.com/dariku/image/upload/c_fill,h_500,q_auto:eco,f_auto,w_500/v1548513244/ibebe/{{product.image_name}} 500w"
+                sizes="(min-width: 600px) 40vw, 90vw"
+                src="https://res.cloudinary.com/dariku/image/upload/c_fill,h_1200,q_auto,f_auto,w_1200/v1548513244/ibebe/{{product.image_name}}"
+                alt="{{ product.name }}">
+            </div>
+            <div class="product__content">
+                <h2 class="name">{{ product.name }}</h2>
+                <h3 class="brand">{{ product.brand.name }}</h3>
+                <p class="description">{{ product.description }}</p>
+                <a href="{{ product.buy_link }}" class="buy-button">Къде да купя</a>
+            </div>
+        </div>
     {% endfor %}
+    </section>
 {% endblock %}

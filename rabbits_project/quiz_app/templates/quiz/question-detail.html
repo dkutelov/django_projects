@@ -9,10 +9,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h1 class="text-center headline">{{ quiz.name }}</h1>
+                <h1 class="text-center headline">{{ question.quiz.name }}</h1>
 
                 <div class="progress-section">
-                    <p class="text-center">Question {{ question.position }} / {{ quiz.question_set.count }}</p>
+                    <p class="text-center">Question {{ question.position }} / {{ question.quiz.question_set.count }}</p>
 
                     <div class="progress">
                         <div class="progress-bar progress-bar-styled" role="progressbar" style="width:{{ progress }}%"
@@ -24,14 +24,10 @@
                     {{ question.text }}
                   </div>
                 </div>
-
-                <div class="my-4">
-                    # if exists -> edit
-
-                    # else new
-                    <form action="{% url 'quiz:question' quiz.id question.id %}" method="POST">
-                        <input type="text" hidden value="{{ question.id }}">
+                {% if answer %}
+                     <form action="{% url 'quiz:update answer' answer.id %}" method="POST">
                         {% csrf_token %}
+                        <input name="question" type="text" hidden value="{{ question.id }}" />
                         <div class="answers-wrap">
                             <span>disagree</span>
                             {% for radio in form.score %}
@@ -41,13 +37,26 @@
                             <span>agree</span>
                         </div>
                         <div class="answer-buttons">
-                            {% if start_question %}
-                                <a href="{% url 'quiz:question' quiz.id start_question.id %}" class="d:block btn btn-styled">Start Again</a>
-                            {% endif %}
                             <button type="submit" class="d:block btn btn-styled">Next</button>
                         </div>
                     </form>
-                </div>
+                {% else %}
+                    <form action="{% url 'quiz:create answer' %}" method="POST">
+                        {% csrf_token %}
+                        <input name="question" type="text" hidden value="{{ question.id }}" />
+                        <div class="answers-wrap">
+                            <span>disagree</span>
+                            {% for radio in form.score %}
+                                {{ radio.tag }}
+                                <label for="{{ radio.id_for_label }}" class="radio-styled"></label>
+                            {% endfor %}
+                            <span>agree</span>
+                        </div>
+                        <div class="answer-buttons">
+                            <button type="submit" class="d:block btn btn-styled">Next</button>
+                        </div>
+                    </form>
+                {% endif %}
             </div>
         </div>
     </div>

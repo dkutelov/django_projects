@@ -1,0 +1,36 @@
+<header class="header">
+    <flexible-header>
+
+    </flexible-header>
+</header>
+
+ <template id="logo-template">
+     <style>
+         .logo {
+             width: 125px;
+             margin: 0 auto;
+             padding: 0.5em 0;
+             display: block;
+             transition: all 0.3s ease-out;
+         }
+
+         .header--small .logo {
+             width: 100px;
+         }
+         
+         @media only screen and (min-width: 960px) {
+              .logo {
+                  width: 200px;
+                  margin: 0;
+                  padding: 1em 0;
+              }
+         }
+     </style>
+     <a href="/">
+        <img id="logo" class="logo"
+                srcset="https://res.cloudinary.com/dariku/image/upload/q_auto,f_auto,w_400/v1548513244/ibebe/logo-large.png 400w,
+                https://res.cloudinary.com/dariku/image/upload/q_auto,f_auto,w_300/v1548513244/ibebe/logo-medium.png 300w,
+                https://res.cloudinary.com/dariku/image/upload/q_auto,f_auto,w_200/v1548513244/ibebe/logo-small.png 200w"
+                sizes="(min-width: 600px) 33vw, 15vw" alt="лого на ibebe"/>
+     </a>
+</template>

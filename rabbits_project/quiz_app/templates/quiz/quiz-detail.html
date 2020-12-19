@@ -12,9 +12,6 @@
         <div>
             <a class="btn btn-styled" href="{% url 'quiz:question' quiz.id start_question.id %}">Start</a>
         </div>
-         <div>
-            <a class="btn btn-styled" href="{% url 'quiz:question' start_question.id %}">Start Quiz</a>
-        </div>
         {% else %}
             <p>This quiz has no questions yet.</p>
         {% endif %}
