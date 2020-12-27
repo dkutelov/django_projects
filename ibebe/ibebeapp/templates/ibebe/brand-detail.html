@@ -1,0 +1,36 @@
+{% extends 'ibebe/base.html' %}
+
+{%  block page_title %}
+    Марки бебешки и детски стоки, предлагани от iBebe.bg
+{% endblock %}
+
+
+{% block content %}
+    <section class="container">
+        <h2 class="brand-detail__name" style="color:{{ brand.title_color }};">{{ brand.name }}</h2>
+        <p id="description" class="brand-detail__description">{{ brand.description }}</p>
+        <div class="toggle-button-box">
+            <i id="toggle-button" class="material-icons toggle-button-box__icon">expand_more</i>
+{#            <i id="collapse" class="material-icons toggle-button-box__icon">expand_less</i>#}
+        </div>
+    </section>
+{% endblock %}
+
+{% block page_scripts %}
+    <script>
+        const descriptionEl = document.getElementById('description');
+        const toggleBtn = document.getElementById('toggle-button');
+
+        toggleBtn.addEventListener('touchstart', function(e){
+            const btn = e.target;
+
+            if (btn.classList.contains('open') && descriptionEl.classList.contains('expanded')) {
+                btn.classList.remove('open');
+                descriptionEl.classList.remove('expanded');
+            } else {
+                btn.classList.add('open');
+                descriptionEl.classList.add('expanded');
+            }
+        });
+    </script>
+{% endblock %}

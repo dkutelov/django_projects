@@ -1,12 +1,17 @@
 body {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   color: $text-color;
+  background-color: #fafafa;
 }
 
 .container {
-  width: 80%;
-  margin: 0 auto;
-  max-width: 1350px;
+  padding: 0 1em;
+  @media only screen and (min-width: $sm-breakpoint) {
+    width: 80%;
+    margin: 170px auto 0;
+    max-width: 1350px;
+    padding: 0;
+  }
 }
 
 .section-heading {

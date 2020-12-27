@@ -1,0 +1,35 @@
+{% extends 'ibebe/base.html' %}
+
+{%  block page_title %}
+    Марки бебешки и детски стоки, предлагани от iBebe.bg
+{% endblock %}
+
+
+{% block content %}
+    <section class="container">
+        <h1 class="section-heading">Марки</h1>
+        <div class="brand__wrapper">
+        {% for brand in brands %}
+            <div class="brand__box">
+                <a href="{% url 'brand detail' brand.id %}" class="brand__link">
+                    <picture style="max-width: 400px;">
+                        <source
+                            srcSet="{{ base_url }}/{{ brand.image_name }}-sm.webp 300w,
+                                    {{ base_url }}/{{ brand.image_name }}.webp 600w"
+                            type="image/webp"
+                            sizes="(min-width: 600px) 25vw, 50vw"
+                        />
+                        <source
+                            srcSet="{{ base_url }}/{{ brand.image_name }}-sm.jpg 300w,
+                                    {{ base_url }}/{{ brand.image_name }}.jpg 600w"
+                            type="image/jpeg"
+                            sizes="(min-width: 600px) 25vw, 50vw"
+                        />
+                        <img src="{{ base_url }}/{{ brand.image_name }}.jpg" alt={{ brand.name }} class="brand__image" />
+                    </picture>
+                </a>
+            </div>
+        {% endfor %}
+        </div>
+    </section>
+{% endblock %}
